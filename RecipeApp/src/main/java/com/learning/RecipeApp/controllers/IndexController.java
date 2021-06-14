@@ -1,4 +1,4 @@
-package com.learning.RecipeApp;
+package com.learning.RecipeApp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
