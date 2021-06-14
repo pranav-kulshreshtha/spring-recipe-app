@@ -2,11 +2,14 @@ package com.learning.RecipeApp.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+@Entity
 public class Ingredient {
 	
 	@Id
@@ -18,6 +21,9 @@ public class Ingredient {
 	
 	@ManyToOne
 	private Recipe recipe;
+	
+	@OneToOne
+	private UnitOfMeasure uom;
 
 	public Long getID() {
 		return ID;
