@@ -1,9 +1,12 @@
 package com.learning.RecipeApp.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Recipe {
@@ -22,7 +25,11 @@ public class Recipe {
 	
 	//private Difficulty difficulty;
 	
+	@Lob
 	private Byte[] image;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Notes notes;
 
 	public Long getID() {
 		return ID;
@@ -94,6 +101,14 @@ public class Recipe {
 
 	public void setImage(Byte[] image) {
 		this.image = image;
+	}
+
+	public Notes getNotes() {
+		return notes;
+	}
+
+	public void setNotes(Notes notes) {
+		this.notes = notes;
 	}
 	
 }
