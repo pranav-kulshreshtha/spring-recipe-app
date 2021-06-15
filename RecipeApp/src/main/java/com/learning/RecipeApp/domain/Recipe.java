@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,6 +47,9 @@ public class Recipe {
 		inverseJoinColumns = @JoinColumn(name = "category_id")	)
 	private Set<Category> categories;
 
+	@Enumerated(value = EnumType.STRING)
+	private Difficulty difficulty;
+	
 	public Long getID() {
 		return ID;
 	}
@@ -139,6 +144,14 @@ public class Recipe {
 
 	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
+	}
+
+	public Difficulty getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty = difficulty;
 	}
 	
 }
