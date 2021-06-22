@@ -1,5 +1,6 @@
 package com.learning.RecipeApp.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,7 +41,7 @@ public class Recipe {
 	private Notes notes;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-	private Set<Ingredient> ingredients;
+	private Set<Ingredient> ingredients = new HashSet<>();
 	
 	@ManyToMany
 	@JoinTable(name = "recipe_category" , joinColumns = @JoinColumn(name = "recipe_id") ,

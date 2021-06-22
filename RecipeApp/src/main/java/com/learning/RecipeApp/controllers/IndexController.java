@@ -10,27 +10,23 @@ import com.learning.RecipeApp.domain.Category;
 import com.learning.RecipeApp.domain.UnitOfMeasure;
 import com.learning.RecipeApp.repositories.CategoryRepository;
 import com.learning.RecipeApp.repositories.UnitOfMeasureRepository;
+import com.learning.RecipeApp.services.RecipeListService;
 
 @Controller
 public class IndexController {
+
+	private final RecipeListService recipeListService;
 	
-	private CategoryRepository categoryRepository;
-	private UnitOfMeasureRepository uomRepository;
-	
-	public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository uomRepository) {
+	public IndexController(RecipeListService recipeListService) {
 		super();
-		this.categoryRepository = categoryRepository;
-		this.uomRepository = uomRepository;
+		this.recipeListService = recipeListService;
 	}
 
 	@RequestMapping({"" , "/" , "/index" , "/index.html"})
 	public String showIndex(Model model) {
 		
-		Optional<Category> categoryOptional = categoryRepository.findByCategoryName("Chinese");
-		Optional<UnitOfMeasure> uomOptional = uomRepository.findByUom("tbsp");
-		System.out.println( categoryOptional.get() );
-		System.out.println( uomOptional.get() );
-		
+		model.addAttribute("recipes", recipeListService.getRecipes());
+	
 		return "index";
 	}
 	
